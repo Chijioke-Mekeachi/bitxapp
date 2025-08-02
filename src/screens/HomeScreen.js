@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
           style={styles.header}
         >
           <View style={styles.navbar}>
-            <Text style={styles.logo}>BitXchain</Text>
+           <Image source={'../../assets/icon2.png'} style={{width:50,height:50}}/>
             <View style={styles.navButtons}>
               <TouchableOpacity
                 style={styles.navButton}

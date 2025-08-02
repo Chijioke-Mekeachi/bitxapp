@@ -9,10 +9,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { supabase } from '../lib/supabase';
+
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -59,7 +61,7 @@ export default function LoginScreen({ navigation }) {
             colors={['rgba(0,0,0,0.85)', 'rgba(0,0,0,0.95)']}
             style={styles.formContainer}
           >
-            <Text style={styles.logo}>BitXchain</Text>
+            <Image source={'../../assets/icon2.png'} style={{width:50,height:50}}/>
             
             <View style={styles.header}>
               <Text style={styles.title}>Login</Text>

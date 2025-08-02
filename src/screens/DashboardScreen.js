@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  Image
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,6 +18,7 @@ import StatsScreen from '../components/StatsScreen';
 import WalletScreen from '../components/WalletScreen';
 import BlogScreen from '../components/BlogScreen';
 import ProfileScreen from '../components/ProfileScreen';
+import RecentTranscation from '../components/RecentTranscation';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +28,7 @@ function DashboardHeader({ username, daysLeft }) {
       colors={['#011227', '#04220a']}
       style={styles.header}
     >
-      <Text style={styles.logo}>BitXchain</Text>
+      <Image source={'../../assets/icon2.png'} style={{width:50,height:50}}/>
       <Text style={styles.welcomeText}>Hello {username}</Text>
       <Text style={styles.countdownText}>
         🚀 Testnet launches in {daysLeft} day{daysLeft !== 1 ? 's' : ''}!
@@ -125,6 +127,15 @@ export default function DashboardScreen({ navigation }) {
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Text style={{ color, fontSize: 20 }}>👤</Text>
+            ),
+          }}
+        />
+         <Tab.Screen
+          name="Transaction"
+          component={RecentTranscation}
           options={{
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: 20 }}>👤</Text>

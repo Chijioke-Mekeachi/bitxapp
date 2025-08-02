@@ -11,6 +11,9 @@ import SignupScreen from './src/screens/SignupScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen';
+import RecentTranscation from './src/components/RecentTranscation';
+import WithdrawRequestsPage from './src/extern/WithdrawRequestPage';
+import BlurtTransferRequestsPage from './src/extern/BlurtTransferRequestPage';
 
 const Stack = createStackNavigator();
 
@@ -23,11 +26,20 @@ export default function App() {
         screenOptions={{
           headerStyle: {
             backgroundColor: '#121212',
+            shadowColor: '#ffcc00',
+            shadowOpacity: 0.3,
+            elevation: 5,
           },
           headerTintColor: '#ffcc00',
           headerTitleStyle: {
             fontWeight: 'bold',
+            textShadowColor: 'rgba(255, 204, 0, 0.3)',
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 10,
           },
+          cardStyle: {
+            backgroundColor: '#1a1a1a'
+          }
         }}
       >
         <Stack.Screen 
@@ -59,6 +71,31 @@ export default function App() {
           name="ChangePassword" 
           component={ChangePasswordScreen}
           options={{ title: 'Change Password' }}
+        />
+        {/* Add new transaction-related screens */}
+        <Stack.Screen 
+          name="RecentTransactions" 
+          component={RecentTranscation}
+          options={{ 
+            title: 'Transactions',
+            headerLeft: null // Remove back button if you don't want to go back from here
+          }}
+        />
+        <Stack.Screen 
+          name="WithdrawRequests" 
+          component={WithdrawRequestsPage}
+          options={{ 
+            title: 'Withdraw Requests',
+            headerBackTitleVisible: false
+          }}
+        />
+        <Stack.Screen 
+          name="BlurtTransferRequests" 
+          component={BlurtTransferRequestsPage}
+          options={{ 
+            title: 'BLURT Transfers',
+            headerBackTitleVisible: false
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

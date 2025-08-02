@@ -73,7 +73,7 @@ export default function ChangePasswordScreen({ navigation }) {
           colors={['rgba(0,0,0,0.85)', 'rgba(0,0,0,0.95)']}
           style={styles.formContainer}
         >
-          <Text style={styles.logo}>BitXchain</Text>
+          <Image source={'../../assets/icon2.png'} style={{width:50,height:50}}/>
           
           <View style={styles.header}>
             <Text style={styles.title}>Change Password</Text>
