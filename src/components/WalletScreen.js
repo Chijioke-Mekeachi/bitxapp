@@ -40,6 +40,7 @@ export default function WalletScreen() {
   const [loadingAccountName, setLoadingAccountName] = useState(false);
   const [accountNameError, setAccountNameError] = useState('');
   const [showWithdrawModal, setShowWithdrawModal] = React.useState(false);
+  const [banks, setBanks] = useState([]);
 
 
 
@@ -155,96 +156,6 @@ export default function WalletScreen() {
       setLoading(false);
     }
   };
-  const handleWithdraw = async () => {
-    if (!amount || isNaN(parseFloat(amount))) {
-      Alert.alert('Error', 'Enter a valid amount.');
-      return;
-    }
-
-    const parsedAmount = parseFloat(amount);
-
-    if (
-      (withdrawMethod === 'naira' && parsedAmount < 500) ||
-      (withdrawMethod === 'usdt' && parsedAmount < 5)
-    ) {
-      Alert.alert(
-        'Error',
-        withdrawMethod === 'naira'
-          ? 'Minimum withdrawal is ₦500'
-          : 'Minimum USDT withdrawal is $5'
-      );
-      return;
-    }
-
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      Alert.alert('Error', 'User not authenticated.');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const payload = {
-        email: profile.email,
-        amount: parsedAmount,
-        method: withdrawMethod,
-        user_id: profile.id,
-      };
-
-      if (withdrawMethod === 'naira') {
-        if (!withdrawBankName || !withdrawBankUsername || !withdrawAccountNumber) {
-          Alert.alert('Error', 'Fill in all bank details.');
-          return;
-        }
-
-        payload.bank = withdrawBankName;
-        payload.accountName = withdrawBankUsername;
-        payload.accountNumber = withdrawAccountNumber;
-      }
-
-      if (withdrawMethod === 'usdt') {
-        if (!walletAddress) {
-          Alert.alert('Error', 'Enter your USDT wallet address.');
-          return;
-        }
-
-        payload.walletAddress = walletAddress;
-      }
-
-      const response = await fetch('https://bitapi-0m8c.onrender.com/api/withdraw', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Withdrawal failed.');
-      }
-
-      Alert.alert('Success', result.message || 'Withdrawal successful!');
-      setAmount('');
-      setWalletAddress('');
-      setWithdrawBankName('');
-      setWithdrawBankUsername('');
-      setWithdrawAccountNumber('');
-      setShowWithdrawModal(false);
-      fetchUserProfile();
-    } catch (error) {
-      console.error('Withdraw error:', error);
-      Alert.alert('Error', error.message || 'Withdrawal error');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const [banks, setBanks] = useState([]);
 
   useEffect(() => {
     fetchBanks();
