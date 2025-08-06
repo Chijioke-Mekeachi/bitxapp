@@ -12,7 +12,7 @@ import {
 
 // Replace with your own supabase instance or auth mechanism
 import { supabase } from '../lib/supabase'; 
-
+import { PAYSTACK_SECRET_KEY } from '@env';
 export default function WithdrawModal({
   showWithdrawModal,
   setShowWithdrawModal,
@@ -30,6 +30,7 @@ export default function WithdrawModal({
   const [accountNameError, setAccountNameError] = useState('');
   const [walletAddress, setWalletAddress] = useState('');
   const [loading, setLoading] = useState(false);
+  
 
   // Fetch list of banks from Paystack
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function WithdrawModal({
         'https://api.paystack.co/bank?country=nigeria&currency=NGN',
         {
           headers: {
-            Authorization: 'Bearer sk_live_1cd0f949feb2f65fb68c4be750bae1d830f1454e', // your Paystack secret key here
+            Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`, // your Paystack secret key here
             'Content-Type': 'application/json',
           },
         }
@@ -79,7 +80,6 @@ export default function WithdrawModal({
     setLoading(true);
     setAccountNameError('');
     try {
-      const PAYSTACK_SECRET_KEY = 'sk_live_1cd0f949feb2f65fb68c4be750bae1d830f1454e'; // keep secret in backend for production!
       const response = await fetch(
         `https://api.paystack.co/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`,
         {

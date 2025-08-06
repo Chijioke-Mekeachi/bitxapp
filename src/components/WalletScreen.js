@@ -15,6 +15,7 @@ import { Picker } from '@react-native-picker/picker';
 import BankDropdown from './BankDropDown';
 import BankPicker from './BankPicker';
 import WithdrawModal from '../components/WithdrawalModal'; // adjust path as needed
+import { PAYSTACK_SECRET_KEY } from '@env';
 
 
 export default function WalletScreen() {
@@ -253,7 +254,7 @@ export default function WalletScreen() {
     try {
       const response = await fetch('https://api.paystack.co/bank?country=nigeria&currency=NGN', {
         headers: {
-          Authorization: 'Bearer sk_live_1cd0f949feb2f65fb68c4be750bae1d830f1454e', // replace with your Paystack secret key
+          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
           'Content-Type': 'application/json',
         },
       });
@@ -283,7 +284,7 @@ export default function WalletScreen() {
         `https://api.paystack.co/bank/resolve?account_number=${withdrawAccountNumber}&bank_code=${selectedBank.code}`,
         {
           headers: {
-            Authorization: 'Bearer sk_live_1cd0f949feb2f65fb68c4be750bae1d830f1454e', // your Paystack secret key
+            Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`, // your Paystack secret key
             'Content-Type': 'application/json',
           },
         }
@@ -317,7 +318,7 @@ export default function WalletScreen() {
     try {
       const response = await fetch(`https://api.paystack.co/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`, {
         headers: {
-          Authorization: 'Bearer sk_live_1cd0f949feb2f65fb68c4be750bae1d830f1454e',
+          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
           'Content-Type': 'application/json',
         },
       });

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
-
-const PAYSTACK_SECRET_KEY = 'sk_test_xxxxxxx'; // Replace with your actual secret key
-
+import { PAYSTACK_SECRET_KEY } from '@env';
 export default function BankPicker({ selectedBank, onSelectBank }) {
     const [banks, setBanks] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
