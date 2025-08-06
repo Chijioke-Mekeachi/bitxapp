@@ -1,4 +1,3 @@
-// WithdrawRequestsPage.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { supabase } from '../lib/supabase';
@@ -109,7 +108,7 @@ const WithdrawRequestsPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#121212',
     padding: 16,
   },
   header: {
@@ -124,28 +123,31 @@ const styles = StyleSheet.create({
     color: '#00f0ff',
   },
   refreshButton: {
-    backgroundColor: '#ffcc00',
+    backgroundColor: '#333333',
     padding: 8,
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#00f0ff',
   },
   refreshText: {
     fontSize: 14,
+    color: '#00f0ff',
   },
   noRequestsText: {
     textAlign: 'center',
     marginTop: 20,
     fontSize: 16,
-    color: '#666',
+    color: '#aaaaaa',
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 12,
-    color: '#333',
+    color: '#f0f0f0',
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#ddd',
+    backgroundColor: '#1e1e1e',
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderRadius: 4,
@@ -155,10 +157,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#cccccc',
   },
   tableRow: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#2a2a2a',
     paddingVertical: 12,
     paddingHorizontal: 5,
     borderRadius: 4,
@@ -167,9 +170,11 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     textAlign: 'center',
+    color: '#f0f0f0',
   },
   statusCell: {
     color: '#ffcc00',
+    fontWeight: 'bold',
   },
   modalOverlay: {
     position: 'absolute',
@@ -177,12 +182,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#1e1e1e',
     padding: 20,
     borderRadius: 8,
     width: '90%',
@@ -196,9 +201,11 @@ const styles = StyleSheet.create({
   detailText: {
     marginBottom: 10,
     fontSize: 16,
+    color: '#e0e0e0',
   },
   detailLabel: {
     fontWeight: 'bold',
+    color: '#ffffff',
   },
   closeButton: {
     backgroundColor: '#f44336',
@@ -208,7 +215,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   closeButtonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
   },
 });

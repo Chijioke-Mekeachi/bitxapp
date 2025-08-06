@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { supabase } from '../lib/supabase';
+import { MaterialIcons } from '@expo/vector-icons';
 
 // Import tab screens
 import StatsScreen from '../components/StatsScreen';
@@ -28,7 +29,10 @@ function DashboardHeader({ username, daysLeft }) {
       colors={['#011227', '#04220a']}
       style={styles.header}
     >
-      <Image source={'../../assets/icon2.png'} style={{width:50,height:50}}/>
+      <Image
+        source={require('../../assets/icon2.png')}
+        style={{ width: 50, height: 50, marginBottom: 10 }}
+      />
       <Text style={styles.welcomeText}>Hello {username}</Text>
       <Text style={styles.countdownText}>
         🚀 Testnet launches in {daysLeft} day{daysLeft !== 1 ? 's' : ''}!
@@ -100,9 +104,9 @@ export default function DashboardScreen({ navigation }) {
           name="Stats"
           component={StatsScreen}
           options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: 20 }}>📊</Text>
+            tabBarLabel: 'Stats',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="insert-chart" color={color} size={size || 24} />
             ),
           }}
         />
@@ -110,8 +114,8 @@ export default function DashboardScreen({ navigation }) {
           name="Blog"
           component={BlogScreen}
           options={{
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: 20 }}>📝</Text>
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="article" color={color} size={size || 24} />
             ),
           }}
         />
@@ -119,8 +123,8 @@ export default function DashboardScreen({ navigation }) {
           name="Wallet"
           component={WalletScreen}
           options={{
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: 20 }}>💰</Text>
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="account-balance-wallet" color={color} size={size || 24} />
             ),
           }}
         />
@@ -128,17 +132,17 @@ export default function DashboardScreen({ navigation }) {
           name="Profile"
           component={ProfileScreen}
           options={{
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: 20 }}>👤</Text>
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="person" color={color} size={size || 24} />
             ),
           }}
         />
-         <Tab.Screen
+        <Tab.Screen
           name="Transaction"
           component={RecentTranscation}
           options={{
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: 20 }}>👤</Text>
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="history" color={color} size={size || 24} />
             ),
           }}
         />
@@ -156,12 +160,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
     alignItems: 'center',
-  },
-  logo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffcc00',
-    marginBottom: 10,
   },
   welcomeText: {
     fontSize: 18,

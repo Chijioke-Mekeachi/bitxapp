@@ -1,50 +1,50 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import ExternButton from '../extern/ExternButton';
 import { withNavigation } from '@react-navigation/compat';
+import ExternButton from '../extern/ExternButton';
 
 class RecentTransaction extends Component {
-  handleSellPress = () => {
+  handleWithdrawPress = () => {
     this.props.navigation.navigate('WithdrawRequests');
   };
 
-  handleBuyPress = () => {
+  handleTransferPress = () => {
     this.props.navigation.navigate('BlurtTransferRequests');
   };
 
   render() {
     return (
       <View style={styles.container}>
+        {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity 
-            onPress={() => this.props.navigation.goBack()}
-            style={styles.backButton}
-          >
+          <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.backButton}>
             <Text style={styles.backButtonText}>‹</Text>
           </TouchableOpacity>
+
           <Text style={styles.title}>Recent Transactions</Text>
+
           <View style={styles.headerSpacer} />
         </View>
 
+        {/* Content */}
         <View style={styles.content}>
           <View style={styles.btnHolder}>
-            <ExternButton 
-              text='Withdraw Requests' 
-              onPress={this.handleSellPress}
+            <ExternButton
+              text="Withdraw Requests"
+              onPress={this.handleWithdrawPress}
               icon="💰"
               containerStyle={styles.withdrawButton}
             />
-            <ExternButton 
-              text='BLURT Transfers' 
-              onPress={this.handleBuyPress}
+
+            <ExternButton
+              text="BLURT Transfers"
+              onPress={this.handleTransferPress}
               icon="🔄"
               containerStyle={styles.transferButton}
             />
           </View>
-          
-          <Text style={styles.footerText}>
-            View your recent transaction history
-          </Text>
+
+          <Text style={styles.footerText}>View your recent transaction history</Text>
         </View>
       </View>
     );
@@ -75,18 +75,18 @@ const styles = StyleSheet.create({
     lineHeight: 32,
   },
   headerSpacer: {
-    width: 32,
+    width: 32, // Matches back button space
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FFD700',
     textAlign: 'center',
-    textShadowColor: 'rgba(255, 215, 0, 0.5)',
-    textShadowOffset: { width: 0, height: 0},
-    textShadowRadius: 10,
-    letterSpacing: 1.5,
     flex: 1,
+    letterSpacing: 1.5,
+    textShadowColor: 'rgba(255, 215, 0, 0.5)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   content: {
     flex: 1,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnHolder: {
-    gap: 25,
+    gap: 2,
     marginBottom: 40,
   },
   withdrawButton: {

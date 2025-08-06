@@ -1,7 +1,14 @@
-// BlurtTransferRequestsPage.js
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator
+} from 'react-native';
 import { supabase } from '../lib/supabase';
+
 const BlurtTransferRequestsPage = () => {
   const [transfers, setTransfers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -86,7 +93,7 @@ const BlurtTransferRequestsPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#121212',
     padding: 16,
   },
   header: {
@@ -101,28 +108,31 @@ const styles = StyleSheet.create({
     color: '#00f0ff',
   },
   refreshButton: {
-    backgroundColor: '#ffcc00',
+    backgroundColor: '#333333',
     padding: 8,
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#00f0ff',
   },
   refreshText: {
     fontSize: 14,
+    color: '#00f0ff',
   },
   noRequestsText: {
     textAlign: 'center',
     marginTop: 20,
     fontSize: 16,
-    color: '#666',
+    color: '#aaaaaa',
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 12,
-    color: '#333',
+    color: '#f0f0f0',
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#ddd',
+    backgroundColor: '#1e1e1e',
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderRadius: 4,
@@ -132,10 +142,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#cccccc',
   },
   tableRow: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#2a2a2a',
     paddingVertical: 12,
     paddingHorizontal: 5,
     borderRadius: 4,
@@ -144,6 +155,7 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     textAlign: 'center',
+    color: '#f0f0f0',
   },
   sentStatus: {
     color: '#00ff99',
