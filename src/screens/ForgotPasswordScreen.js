@@ -57,7 +57,7 @@ export default function ForgotPasswordScreen({ navigation }) {
           colors={['rgba(0,0,0,0.85)', 'rgba(0,0,0,0.95)']}
           style={styles.formContainer}
         >
-          <Text style={styles.logo}>BitXchain</Text>
+         <Image source={require('../../assets/icon2.png')} style={{width:50,height:50}}/>
           
           <View style={styles.header}>
             <Text style={styles.title}>Forgot Password</Text>

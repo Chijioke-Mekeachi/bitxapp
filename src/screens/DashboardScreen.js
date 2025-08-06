@@ -33,10 +33,12 @@ function DashboardHeader({ username, daysLeft }) {
         source={require('../../assets/icon2.png')}
         style={{ width: 50, height: 50, marginBottom: 10 }}
       />
-      <Text style={styles.welcomeText}>Hello {username}</Text>
-      <Text style={styles.countdownText}>
-        🚀 Testnet launches in {daysLeft} day{daysLeft !== 1 ? 's' : ''}!
-      </Text>
+      <View>
+        <Text style={styles.welcomeText}>Hello {username}</Text>
+        <Text style={styles.countdownText}>
+          🚀 Testnet launches in {daysLeft} day{daysLeft !== 1 ? 's' : ''}!
+        </Text>
+      </View>
     </LinearGradient>
   );
 }
@@ -160,15 +162,18 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   welcomeText: {
     fontSize: 18,
     color: '#fff',
     marginBottom: 5,
+    textAlign:'right'
   },
   countdownText: {
     fontSize: 16,
     color: '#00ffcc',
-    textAlign: 'center',
+    textAlign: 'right',
   },
 });
