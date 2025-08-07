@@ -1,57 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { withNavigation } from '@react-navigation/compat';
+import { useNavigation } from '@react-navigation/native';
 import ExternButton from '../extern/ExternButton';
 
-class RecentTransaction extends Component {
-  handleWithdrawPress = () => {
-    this.props.navigation.navigate('WithdrawRequests');
+const RecentTransaction = () => {
+  const navigation = useNavigation();
+
+  const handleWithdrawPress = () => {
+    navigation.navigate('WithdrawRequests');
   };
 
-  handleTransferPress = () => {
-    this.props.navigation.navigate('BlurtTransferRequests');
+  const handleTransferPress = () => {
+    navigation.navigate('BlurtTransferRequests');
   };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.backButton}>
-            <Text style={styles.backButtonText}>‹</Text>
-          </TouchableOpacity>
+  return (
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Text style={styles.backButtonText}>‹</Text>
+        </TouchableOpacity>
 
-          <Text style={styles.title}>Recent Transactions</Text>
+        <Text style={styles.title}>Recent Transactions</Text>
 
-          <View style={styles.headerSpacer} />
-        </View>
-
-        {/* Content */}
-        <View style={styles.content}>
-          <View style={styles.btnHolder}>
-            <ExternButton
-              text="Withdraw Requests"
-              onPress={this.handleWithdrawPress}
-              icon="💰"
-              containerStyle={styles.withdrawButton}
-            />
-
-            <ExternButton
-              text="BLURT Transfers"
-              onPress={this.handleTransferPress}
-              icon="🔄"
-              containerStyle={styles.transferButton}
-            />
-          </View>
-
-          <Text style={styles.footerText}>View your recent transaction history</Text>
-        </View>
+        <View style={styles.headerSpacer} />
       </View>
-    );
-  }
-}
 
-export default withNavigation(RecentTransaction);
+      {/* Content */}
+      <View style={styles.content}>
+        <View style={styles.btnHolder}>
+          <ExternButton
+            text="Withdraw Requests"
+            onPress={handleWithdrawPress}
+            icon="💰"
+            containerStyle={styles.withdrawButton}
+          />
+
+          <ExternButton
+            text="BLURT Transfers"
+            onPress={handleTransferPress}
+            icon="🔄"
+            containerStyle={styles.transferButton}
+          />
+        </View>
+
+        <Text style={styles.footerText}>View your recent transaction history</Text>
+      </View>
+    </View>
+  );
+};
+
+export default RecentTransaction;
 
 const styles = StyleSheet.create({
   container: {
